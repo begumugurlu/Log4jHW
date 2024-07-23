@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN">
+    <Appenders>
+        <RollingFile name="FileAppender" fileName="logs/app-${date:yyyy-MM-dd-HH-mm-ss}.log" filePattern="logs/app-%d{yyyy-MM-dd-HH-mm-ss}-%i.log">
+            <PatternLayout pattern="%d{HH:mm:ss} %-5level %logger{36} - %msg%n"/>
+            <Policies>
+                <!-- Trigger rollover when file size exceeds 1 MB -->
+                <SizeBasedTriggeringPolicy size="1 MB"/>
+            </Policies>
+            <DefaultRolloverStrategy max="10"/>
+        </RollingFile>
+    </Appenders>
+    <Loggers>
+        <Logger name="myTimerLoggingDebug" level="debug" additivity="false">
+            <AppenderRef ref="FileAppender"/>
+        </Logger>
+        <Logger name="myTimerLoggingInfo" level="info" additivity="false">
+            <AppenderRef ref="FileAppender"/>
+        </Logger>
+        <Logger name="myTimerLoggingError" level="error" additivity="false">
+            <AppenderRef ref="FileAppender"/>
+        </Logger>
+        <Root level="debug">
+            <AppenderRef ref="FileAppender"/>
+        </Root>
+    </Loggers>
+</Configuration>
